@@ -10,10 +10,10 @@ const Product = (product) => (
 
 // You can switch between fetching from an API and simplying mocking the request to play around with the app.
 
-const fetchProducts = (page) => fetch(`http://localhost/products?page=${page}`).then(response => response.json())
+const defaultFetchProducts = (page) => fetch(`http://localhost/products?page=${page}`).then(response => response.json())
 
 /*
-const fetchProducts = (page) => ({
+const defaultFetchProducts = (page) => ({
   products: [{
     id: `dummy-id-1`,
     name: 'dummy-product',
@@ -22,7 +22,7 @@ const fetchProducts = (page) => ({
 })
 */
 
-export const ProductList = () => {
+export const ProductList = ({ fetchProducts = defaultFetchProducts }) => {
   const [products, setProducts] = useState([])
   const [page, setPage] = useState(1)
   const loadProducts = async () => {
