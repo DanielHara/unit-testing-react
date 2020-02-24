@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const Product = (product) => (
-  <div>
-    <div>{product.id}</div>
-    <div>{product.name}</div>
-    <div>{product.price}</div>
-  </div>
+  <li>
+    <h3>{product.id}</h3>
+    <p>{product.name}</p>
+    <p>{product.price}</p>
+  </li>
 )
 
 // You can switch between fetching from an API and simplying mocking the request to play around with the app.
 
-const fetchProducts = (page) => fetch(`http://localhost/products?page=${page}`).then(response => response.json()).catch((error) => console.log(error))
+const fetchProducts = (page) => fetch(`http://localhost/products?page=${page}`).then(response => response.json())
 
 /*
 const fetchProducts = (page) => ({
@@ -27,18 +27,22 @@ export const ProductList = () => {
   const [page, setPage] = useState(1)
   const loadProducts = async () => {
     const response = await fetchProducts(page)
-    if(response) {
+    if (response) {
       const newProducts = response.products
       setProducts(products.concat(newProducts))
       setPage(page + 1)
     }
   }
-  return <div>
-    <button onClick={loadProducts}>
+  return (
+    <>
+      <ul>
+        {products.map(product => <Product {...product} />)}
+      </ul>
+      <button onClick={loadProducts}>
        Load more!
-    </button>
-    {products.map(product => <Product {...product} />)}
-  </div>
+      </button>
+    </>
+  )
 }
 
-export default ProductList;
+export default ProductList

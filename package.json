@@ -28,6 +28,7 @@
   "devDependencies": {
     "@testing-library/react": "^9.4.0",
     "bluebird": "^3.7.2",
-    "nock": "^11.8.2"
+    "nock": "^11.8.2",
+    "standard": "^14.3.1"
   }
 }
